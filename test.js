@@ -20,37 +20,43 @@ const sliderNavs = document.querySelectorAll(".sliderNav");
 
 function slideRight(button, elementArray) {
   button.addEventListener("click", () => {
-    elementArray.forEach((element) => {
-      const currentSlide = parseInt(element.id.slice(5));
-      const nextSlide = (currentSlide + 1) % 4;
-      element.id = `slide${nextSlide}`;
-    });
-    matchNavToSLide();
+    makeNextVisible(elementArray);
+    matchNavToSlide();
   });
 }
-function matchNavToSLide() {
+function makeNextVisible(elementArray) {
+  let index = findShownImageIndex() ? findShownImageIndex() : 0;
+  elementArray[index].classList.remove("visible");
+  nextIndex = (index + 1) % elementArray.length;
+  elementArray[nextIndex].classList.add("visible");
+}
+function makePreviousVisible(elementArray) {
+  let index = findShownImageIndex() ? findShownImageIndex() : 0;
+  elementArray[index].classList.remove("visible");
+  nextIndex = (index + (elementArray.length - 1)) % elementArray.length;
+  elementArray[nextIndex].classList.add("visible");
+}
+
+function matchNavToSlide() {
   const index = findShownImageIndex();
   sliderNavs.forEach((element) => {
     element.classList.remove("selected");
   });
   sliderNavs[index].classList.add("selected");
 }
+
 function findShownImageIndex() {
   for (let i = 0; i < slides.length; i++) {
-    if (slides[i].id === "slide0") {
+    if (Array.from(slides[i].classList).includes("visible")) {
       return i;
     }
   }
 }
 function slideLeft(button, elementArray) {
   button.addEventListener("click", () => {
-    elementArray.forEach((element) => {
-      const currentSlide = parseInt(element.id.slice(5));
-      const previousSlide = (currentSlide + 3) % 4;
-      element.id = `slide${previousSlide}`;
-    });
+    makePreviousVisible(elementArray);
+    matchNavToSlide();
   });
-  matchNavToSLide();
 }
 
 slideRight(rightBtn, slides);
