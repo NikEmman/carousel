@@ -2,7 +2,7 @@ body {
     padding: 4em;
 }
 
-.nav {
+/* .navi {
     height: 10vh;
     gap: 10px;
     align-items: center;
@@ -18,7 +18,7 @@ body {
 
 a {
     text-decoration: none;
-}
+} */
 
 .carousel {
     display: flex;
@@ -38,7 +38,7 @@ a {
     align-self: center;
 }
 
-.cont {
+.container {
     border: 2px solid darkgrey;
     width: fit-content;
     position: relative;

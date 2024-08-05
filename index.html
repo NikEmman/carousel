@@ -3,29 +3,17 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Test</title>
-    <link rel="stylesheet" href="test.css" />
-    <script src="test.js" defer></script>
+    <title>Carousel</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="script.js" defer></script>
   </head>
 
   <body>
-    <div class="container">
-      <button>Menu</button>
-      <div class="nav">
-        <div class="links">
-          <a href="http://">Link 1</a>
-          <a href="http://">Link 2</a>
-          <a href="http://">Link 3</a>
-          <a href="http://">Link 4</a>
-        </div>
-      </div>
-    </div>
-
     <div class="carousel">
       <div class="slider">
         <button id="left"><</button>
-        <div class="cont">
-          <div class="slide visible">
+        <div class="container">
+          <div class="slide">
             <img src="./assets/cat.jpg" alt="" />
           </div>
           <div class="slide">
@@ -40,12 +28,7 @@
         </div>
         <button id="right">></button>
       </div>
-      <div class="nav">
-        <button class="sliderNav selected"></button>
-        <button class="sliderNav"></button>
-        <button class="sliderNav"></button>
-        <button class="sliderNav"></button>
-      </div>
+      <div class="nav"></div>
     </div>
   </body>
 </html>

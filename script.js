@@ -1,21 +1,19 @@
-function toggleVisibility(button, targetElement) {
-  button.addEventListener("click", function () {
-    if (targetElement.style.display === "block") {
-      targetElement.style.display = "none";
-    } else {
-      targetElement.style.display = "block";
-    }
-  });
-}
-
-const menuBtn = document.querySelector("button");
-const links = document.querySelector(".links");
-
-toggleVisibility(menuBtn, links);
-
+const nav = document.querySelector(".nav");
 const rightBtn = document.getElementById("right");
 const leftBtn = document.getElementById("left");
 const slides = document.querySelectorAll(".slide");
+
+function createSliderNav() {
+  const sliderNav = document.createElement("button");
+  sliderNav.classList.add("sliderNav");
+  nav.appendChild(sliderNav);
+}
+
+// populate sliderNav depending on number of images
+for (let i = 0; i < slides.length; i++) {
+  createSliderNav();
+}
+
 const sliderNavs = document.querySelectorAll(".sliderNav");
 
 function slideRight(button, elementArray) {
@@ -59,8 +57,23 @@ function slideLeft(button, elementArray) {
   });
 }
 
+sliderNavs.forEach((element) => {
+  element.addEventListener("click", (e) => {
+    let index = Array.from(sliderNavs).indexOf(e.target);
+    slides.forEach((slide) => {
+      slide.classList.remove("visible");
+    });
+    sliderNavs.forEach((sliderNav) => {
+      sliderNav.classList.remove("selected");
+    });
+    sliderNavs[index].classList.add("selected");
+    slides[index].classList.add("visible");
+  });
+});
+
 slideRight(rightBtn, slides);
 slideLeft(leftBtn, slides);
+sliderNavs[0].click();
 setInterval(function () {
   rightBtn.click();
 }, 5000);
